@@ -86,7 +86,7 @@ def getClues(guess, secretNum):
     if len(clues) == 0:
         return 'Begals' # There are no correct digits at all.
     else:
-        #Short the clues into alphabetical order so their original order
+        #Sort the clues into alphabetical order so their original order
         # doesn't give information away.
         clues.sort()
         # Make a single string from the list of string clues.
