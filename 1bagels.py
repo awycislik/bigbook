@@ -26,28 +26,28 @@ def main():
     clues would be Fermi Pico.'''.format(NUM_DIGITS))
 
     while True:  # Main game loop.
-        #This stores the sectet number the player needs to guess:
-        secretNum = getSecretNum()
+        # This stores the secret number the player needs to guess:
+        secret_num = get_secret_num()
         print('I have thought up a number.')
         print(' You have {} guesses to get it.'.format(MAX_GUESSES))
 
-        numGuesses = 1
-        while numGuesses <= MAX_GUESSES:
+        num_guesses = 1
+        while num_guesses <= MAX_GUESSES:
             guess = ''
             # Keep looping until they enter a valid guess:
             while len(guess) != NUM_DIGITS or not guess.isdecimal():
-                print('Guess #{}:'.format(numGuesses))
+                print('Guess #{}:'.format(num_guesses))
                 guess = input('> ')
 
-            clues = getClues(guess, secretNum)
+            clues = get_clues(guess, secret_num)
             print(clues)
-            numGuesses += 1
+            num_guesses += 1
 
-            if guess == secretNum:
+            if guess == secret_num:
                 break
-            if numGuesses > MAX_GUESSES:
+            if num_guesses > MAX_GUESSES:
                 print('You run out of guesses.')
-                print('The answer was {}.'.format(secretNum))
+                print('The answer was {}.'.format(secret_num))
 
         # Ask player if they want to play again.
         print('Do you want play again? (yes or no?)')
@@ -56,37 +56,37 @@ def main():
     print('Thanks for a playing!')
 
 
-def getSecretNum():
+def get_secret_num():
     """Returns a string made up of NUM_DIGITS unique random digits."""
-    numbers = list('0123456789') # Create a list of digits 0 to 9.
-    random.shuffle(numbers) # Shuffle them into random order.
+    numbers = list('0123456789')  # Create a list of digits 0 to 9.
+    random.shuffle(numbers)  # Shuffle them into random order.
 
     # Get the first NUM_DIGITS digits in the list for the secret number:
-    secretNum = ''
+    secret_num = ''
     for i in range(NUM_DIGITS):
-        secretNum += str(numbers[i])
-    return secretNum
+        secret_num += str(numbers[i])
+    return secret_num
 
 
-def getClues(guess, secretNum):
+def get_clues(guess, secret_num):
     """Returns a string with the pico, fermi, bagels clues for guess
-    and secret number pauir."""
-    if guess == secretNum:
+    and secret number pair."""
+    if guess == secret_num:
         return 'You got it!'
 
     clues = []
 
     for i in range(len(guess)):
-        if guess[i] == secretNum[i]:
+        if guess[i] == secret_num[i]:
             # A correct digit is in the correct place.
             clues.append('Fermi')
-        elif guess[i] in secretNum:
+        elif guess[i] in secret_num:
             # A correct digit is in the incorrect place.
             clues.append('Pico')
     if len(clues) == 0:
-        return 'Begals' # There are no correct digits at all.
+        return 'Bagels'  # There are no correct digits at all.
     else:
-        #Sort the clues into alphabetical order so their original order
+        # Sort the clues into alphabetical order so their original order
         # doesn't give information away.
         clues.sort()
         # Make a single string from the list of string clues.
@@ -96,4 +96,3 @@ def getClues(guess, secretNum):
 # If the program is run (instead of imported), run the game:
 if __name__ == '__main__':
     main()
-
