@@ -8,32 +8,32 @@ import datetime
 import random
 
 
-def getBirthdays(numberOfBirthdays):
+def get_birthdays(number_of_birthdays):
     """Returns a list of number random date objects for birthdays."""
     birthdays = []
-    for i in range(numberOfBirthdays):
+    for num in range(number_of_birthdays):
         # The year is unimportant for our simulation, as long as all
         # birthdays have the same year.
-        startOfYear = datetime.date(2001, 1, 1)
+        start_of_year = datetime.date(2001, 1, 1)
 
         # Get a random day into the year:
-        randomNumerOfDays = datetime.timedelta(random.randint(0, 364))
-        birthday = startOfYear + randomNumerOfDays
+        random_numer_of_days = datetime.timedelta(random.randint(0, 364))
+        birthday = start_of_year + random_numer_of_days
         birthdays.append(birthday)
     return birthdays
 
 
-def getMatch(birthdays):
+def get_match(birthdays):
     """Returns the date objects of a birthday that occurs more than once
-    in the birthdat list."""
+    in the birthday list."""
     if len(birthdays) == len(set(birthdays)):
-        return None # All birthdays are unique, so return None.
+        return None  # All birthdays are unique, so return None.
 
     # Compare each birthday to every other birthday:
     for a, birthdayA in enumerate(birthdays):
-        for b, birthdayB in enumerate(birthdays[a + 1 :]):
+        for b, birthdayB in enumerate(birthdays[a + 1:]):
             if birthdayA == birthdayB:
-                return birthdayA # Return the matching birthday.
+                return birthdayA  # Return the matching birthday.
 
 
 # Display the intro:
@@ -47,22 +47,22 @@ simulations) to explore this concept.
 (It's not actually a paradox, it's just a surprising result.
 ''')
 
-#Set up a tuple of month names in order:
+# Set up a tuple of month names in order:
 MONTHS = ('Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
           'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec')
 
-while True: # Keep asking until the user enters a valid amount.
+while True:  # Keep asking until the user enters a valid amount.
     print('How many birthdays shall I generate (Max 100)')
     response = input('> ')
-    if response.isdecimal() and (0 < int(response) >=100):
+    if response.isdecimal() and (0 < int(response) <= 100):
         numBDays = int(response)
         break  # User has entered a valid amount.
 print()
 
 # Generate and display the birthdays:
 print('Here are', numBDays, 'birthdays:')
-birthdays = getBirthdays(numBDays)
-for i, birthday in enumerate(numBDays):
+birthdays = get_birthdays(numBDays)
+for i, birthday in enumerate(birthdays):
     if i != 0:
         # Display a comma for each birtday after the first birtday.
         print(',', end='')
@@ -73,7 +73,7 @@ print()
 print()
 
 # Determine if there are two birthdays that match.
-match = getMatch(birthdays)
+match = get_match(birthdays)
 
 # Display the results:
 print('In this simulation, ', end='')
@@ -95,8 +95,8 @@ for i in range(100_000):
     # Report on the progers every 10,000 simulations:
     if i % 10_000 == 0:
         print(i, 'simulations run...')
-    birthdays = getBirthdays(numBDays)
-    if getMatch(birthdays) != None:
+    birthdays = get_birthdays(numBDays)
+    if get_match(birthdays) != None:
         simMatch = simMatch + 1
 print('100,000 simulations run.')
 
