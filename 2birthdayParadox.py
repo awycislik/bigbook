@@ -10,28 +10,28 @@ import random
 
 def get_birthdays(number_of_birthdays):
     """Returns a list of number random date objects for birthdays."""
-    birthdays = []
+    arr_birthdays = []
     for num in range(number_of_birthdays):
         # The year is unimportant for our simulation, as long as all
-        # birthdays have the same year.
+        # arr_birthdays have the same year.
         start_of_year = datetime.date(2001, 1, 1)
 
         # Get a random day into the year:
         random_numer_of_days = datetime.timedelta(random.randint(0, 364))
         birthday = start_of_year + random_numer_of_days
-        birthdays.append(birthday)
-    return birthdays
+        arr_birthdays.append(birthday)
+    return arr_birthdays
 
 
-def get_match(birthdays):
+def get_match(arr_birthdays):
     """Returns the date objects of a birthday that occurs more than once
     in the birthday list."""
-    if len(birthdays) == len(set(birthdays)):
+    if len(arr_birthdays) == len(set(arr_birthdays)):
         return None  # All birthdays are unique, so return None.
 
     # Compare each birthday to every other birthday:
-    for a, birthdayA in enumerate(birthdays):
-        for b, birthdayB in enumerate(birthdays[a + 1:]):
+    for a, birthdayA in enumerate(arr_birthdays):
+        for b, birthdayB in enumerate(arr_birthdays[a + 1:]):
             if birthdayA == birthdayB:
                 return birthdayA  # Return the matching birthday.
 
@@ -52,9 +52,9 @@ MONTHS = ('Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
           'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec')
 
 while True:  # Keep asking until the user enters a valid amount.
-    print('How many birthdays shall I generate (Max 100)')
+    print('How many birthdays shall I generate (Max 150)')
     response = input('> ')
-    if response.isdecimal() and (0 < int(response) <= 100):
+    if response.isdecimal() and (0 < int(response) <= 150):
         numBDays = int(response)
         break  # User has entered a valid amount.
 print()
@@ -66,7 +66,7 @@ for i, birthday in enumerate(birthdays):
     if i != 0:
         # Display a comma for each birtday after the first birtday.
         print(',', end='')
-    monthName = MONTHS[birthday.month -1]
+    monthName = MONTHS[birthday.month - 1]
     dateText = '{} {}'.format(monthName, birthday.day)
     print(dateText, end='')
 print()
