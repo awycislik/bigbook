@@ -30,6 +30,7 @@ def main():
         but must hit exactly one more time before standing.
         In case of a tie, the bet is returned to the player.
         The dealer stops hitting at 17.''')
+
     money = 5000
     while True: # Main game loop
         # Check if the player has run out of money:
@@ -38,3 +39,17 @@ def main():
             print("Good thing you weren't playing with real money.")
             print("Thanks for playing!")
             sys.exit()
+
+        # Let the player enter their bet for this round:
+        print('Money:', money)
+        bet = get_bet(money)
+
+        # Give the dealer and player two cards from the deck each:
+        deck = get_deck()
+        dealer_hand = [deck.pop(), deck.pop()]
+        player_hand = [deck.pop(), deck.pop()]
+
+        # Handle player actions:
+        print('Bet:', bet)
+        while True:  # Keep looping until player stands or busts.
+
