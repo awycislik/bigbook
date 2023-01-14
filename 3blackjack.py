@@ -52,4 +52,11 @@ def main():
         # Handle player actions:
         print('Bet:', bet)
         while True:  # Keep looping until player stands or busts.
+            display_hands(player_hand, dealer_hand, False)
+            print()
 
+            # Check if the player has bust:
+            if get_hand_value(player_hand) > 21:
+                break
+
+            # Get
