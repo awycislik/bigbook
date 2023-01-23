@@ -5,7 +5,8 @@
 5. View this code at https://nostarch.com/big-book-small-python-projects
 6. Tags: large, game, card game"""
 
-import random, sys
+import random
+import sys
 
 # Set up the constants:
 HEARTS = chr(9829)  # Characters 9829 is '♥'.
@@ -32,9 +33,9 @@ def main():
         The dealer stops hitting at 17.''')
 
     money = 5000
-    while True: # Main game loop
+    while True:  # Main game loop
         # Check if the player has run out of money:
-        if money <=0:
+        if money <= 0:
             print("You're broke!")
             print("Good thing you weren't playing with real money.")
             print("Thanks for playing!")
@@ -86,7 +87,7 @@ def main():
                 break
 
         # Handle the dealer's actions:
-        if get_hand_value(player_hand) <=21:
+        if get_hand_value(player_hand) <= 21:
             while get_hand_value(dealer_hand) < 17:
                 # The dealer hits:
                 print('Dealer hits...')
@@ -180,7 +181,7 @@ def get_hand_value(cards):
         elif rank in ('K', 'Q', 'J'):  # Face cards are worth 10 points.
             value += 10
         else:
-            value += int(rank) # Numbered cards are worth their number.
+            value += int(rank)  # Numbered cards are worth their number.
 
     # Add the value for the aces:
     value += number_of_aces  # Add 1 per ace.
@@ -233,7 +234,7 @@ def get_move(player_hand, money):
         if move in ('H', 'S'):
             return move  # Player has entered a valid move.
         if move == 'D' and '(D)ouble down' in moves:
-            return move # Player has entered a valid move.
+            return move  # Player has entered a valid move.
 
 
 # If the program is run (instead of imported), run the game:
