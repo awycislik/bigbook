@@ -59,7 +59,17 @@ def main():
         for logo in logos:  # Handle each logo in the logos list.
             # Erase the logo's current location:
             bext.goto(logo[X], logo[Y])
-            print('   ', end='')  # (!) Try commenting this line out.
+            print('   ', end='')  # (!) Try comment ing this line out.
 
             original_direction = logo[DIR]
 
+            # See if the logo bounces off the corners:
+            if logo[X] == 0 and logo[Y] == 0:
+                logo[DIR] = down_right
+                corner_bounces += 1
+            elif logo[X] == 0 and logo[Y] == HEIGHT - 1:
+                logo[DIR] = up_right
+                corner_bounces += 1
+            elif logo[X] == WIDTH - 3 and logo[Y] == 0:
+                logo[DIR] = down_left
+                corner_bounces += 1
