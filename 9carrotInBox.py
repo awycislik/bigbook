@@ -23,3 +23,14 @@ input('Press Enter to begin...')
 
 p1_name = input('Human player 1, enter your name: ')
 p2_name = input('Human player 2, enter your name: ')
+player_names = p1_name[:11].center(11) + p2_name[:11].center(11)
+
+print('''HERE ARE TWO BOXES:
+  __________
+ /         /| 
++---------+ | 
+|   BOX   | |
+|   RED   | /
++---------+/
+
+''')
