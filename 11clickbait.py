@@ -20,7 +20,6 @@ WHEN = ['Soon', 'This Year', 'Later Today', 'RIGHT NOW', 'Next Week']
 
 
 def main():
-    global headline
     print('Clickbait Headline Generator')
     print('By Al Sweigart al@inventwithpython.com')
     print()
@@ -58,8 +57,8 @@ def main():
         print(headline)
     print()
 
-    website = random.choice('wobsite', 'blag', 'Facebuuk', 'Gogles',
-                            'Facesbook', 'Tweedie', 'Pastgram')
+    website = random.choice(['wobsite', 'blag', 'Facebuuk', 'Gogles',
+                            'Facesbook', 'Tweedie', 'Pastgram'])
     when = random.choice(WHEN).lower()
     print('Post these to our', website, when, "or you're fired")
 
@@ -125,8 +124,9 @@ def generate_job_automat_headline():
     if pronoun1 == 'Their':
         return "This {} {} Didn't Think Robots Would Take {} Job. {} Were Wrong".format(state, noun, pronoun1, pronoun2)
     else:
-        return "This {] Didn't Think Robots Would Take {} Job. {} Was Wrong".format(state, noun, pronoun1, pronoun2)
+        return "This {} Didn't Think Robots Would Take {} Job. {} Was Wrong".format(state, noun, pronoun1, pronoun2)
+
 
 # If the program is run (instead of imported), run the game:
 if __name__ == '__main__':
-        main()
+    main()
